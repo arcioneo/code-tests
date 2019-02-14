@@ -2,9 +2,7 @@ package com;
 
 import static org.apache.commons.lang.Validate.notNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import interfaces.IObjectTest;
 
@@ -19,15 +17,14 @@ import interfaces.IObjectTest;
  * 
  * @author eduardomilpas@gmail.com
  *
- * 1st approach
- * Disadvantage of this is space, due to creation of a temporary list on the constructor
- * and another iterator(the filtered one) 
+ *         Second approach, much better since it does use the same iterator
+ *         instance
  */
 public class FilteringIterator<T> implements Iterator<T> {
 
 	private Iterator<T>		myIterator;
 	private IObjectTest<T>	myTest;
-	private Iterator<T>		myFilteredIterator;
+	private T				nextElement;
 
 	public FilteringIterator(Iterator<T> myIterator, IObjectTest<T> myTest) {
 		super();
@@ -37,28 +34,25 @@ public class FilteringIterator<T> implements Iterator<T> {
 
 		this.myIterator = myIterator;
 		this.myTest = myTest;
-		buildFilteredIterator();
-	}
-
-	private void buildFilteredIterator() {
-		List<T> list = new ArrayList<>();
-
-		myIterator.forEachRemaining(t -> {
-			if (myTest.test(t))
-				list.add(t);
-		});
-
-		this.myFilteredIterator = list.iterator();
 	}
 
 	@Override
 	public boolean hasNext() {
-		return myFilteredIterator.hasNext();
+		T next = null;
+
+		while (myIterator.hasNext()) {
+			next = myIterator.next();
+			while (myTest.test(next)) {
+				nextElement = next;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
 	public T next() {
-		return myFilteredIterator.next();
+		return nextElement;
 	}
 
 }

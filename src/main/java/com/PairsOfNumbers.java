@@ -18,6 +18,7 @@ import beans.PairBean;
  *
  */
 public class PairsOfNumbers {
+	
 	public List<PairBean> getPair(int[] numbers, int key) {
 		return isEmptyOrNull(numbers) ? new ArrayList<PairBean>() : getPairs(numbers, key);
 	}

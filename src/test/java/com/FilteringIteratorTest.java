@@ -34,7 +34,6 @@ public class FilteringIteratorTest {
 		List<String>		list		= Arrays.asList(new String[] { "a1", "b", "a2" });
 		Iterator<String>	myIterator	= list.iterator();
 		IObjectTest<String>	myTest		= new IObjectTest<String>() {
-
 											@Override
 											public Boolean test(String s) {
 												return s.startsWith("a");

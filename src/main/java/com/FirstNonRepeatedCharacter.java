@@ -1,5 +1,7 @@
 package com;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Given sample alphanumeric string, find the first character that doesn't
  * repeat on a string
@@ -15,17 +17,12 @@ public class FirstNonRepeatedCharacter {
 	 * 
 	 */
 	public char findFirstNonRepetingChar(String value) {
-		return value == null ? ' ' : getFirstNonRepetingChar(value);
+		return StringUtils.isBlank(value) ? ' ' : getFirstNonRepetingChar(value);
 	}
 
 	private char getFirstNonRepetingChar(String value) {
-		if (value.isEmpty()) {
-			return ' ';
-		} else {
-			String c = String.valueOf(value.charAt(0));
-			value = value.substring(1, value.length());
-			return value.contains(c) ? getFirstNonRepetingChar(value.replace(c, "")) : c.charAt(0);
-		}
-
+		String c = String.valueOf(value.charAt(0));
+		value = value.substring(1, value.length());
+		return value.contains(c) ? getFirstNonRepetingChar(value.replace(c, "")) : c.charAt(0);
 	}
 }
