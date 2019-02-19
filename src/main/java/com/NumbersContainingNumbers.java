@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class NumbersContainingNumbers {
 
-	public int[] findPathWithMaximumSum(int[] vals) {
+	public int[] containsNumbersOneTwoAndThree(int[] vals) {
 		List<String>	n		= new ArrayList<>();
 		List<Integer>	list	= new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class NumbersContainingNumbers {
 		}
 
 		for (String s : n) {
-			if (s.contains("1") && s.contains("3") && s.contains("3")) {
+			if (s.contains("1") && s.contains("2") && s.contains("3")) {
 				list.add(Integer.valueOf(s));
 			}
 		}

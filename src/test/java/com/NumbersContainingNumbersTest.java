@@ -31,22 +31,22 @@ public class NumbersContainingNumbersTest {
 	}
 
 	@Test
-	public void findPathWithMaximumSum() {
+	public void containsNumbersOneTwoAndThree() {
 		int[]	expected	= { 123, 1232, 32145 };
 		int[]	val			= new int[] { 123, 1232, 456, 234, 32145 };
-		int[]	result		= subject.findPathWithMaximumSum(val);
+		int[]	result		= subject.containsNumbersOneTwoAndThree(val);
 		assertTrue("expected:" + Arrays.toString(expected) + " got:" + Arrays.toString(result),
 				Arrays.equals(expected, result));
 
 		int[]	expected2	= { 1234, 627183 };
 		int[]	val2		= new int[] { 9821, 627183, 12, 1234 };
-		int[]	result2		= subject.findPathWithMaximumSum(val2);
+		int[]	result2		= subject.containsNumbersOneTwoAndThree(val2);
 		assertTrue("expected:" + Arrays.toString(expected2) + " got:" + Arrays.toString(result2),
 				Arrays.equals(expected2, result2));
 
 		int[]	expected3	= { -1 };
 		int[]	val3		= new int[] { 12, 232, 456, 234 };
-		int[]	result3		= subject.findPathWithMaximumSum(val3);
+		int[]	result3		= subject.containsNumbersOneTwoAndThree(val3);
 		assertTrue("expected:" + Arrays.toString(expected3) + " got:" + Arrays.toString(result3),
 				Arrays.equals(expected3, result3));
 
