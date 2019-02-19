@@ -25,29 +25,36 @@ public class StringPermutations {
 	public String[] getPermutations(String value) {
 		getPermutations(value.toCharArray(), value.length());
 		Collections.sort(permutations);
-		
+
 		return permutations.toArray(new String[0]);
 	}
 
 	private void getPermutations(char[] chars, int length) {
-		char temp = ' '; 
 		if (length == 1) {
 			permutations.add(new String(chars));
 		} else {
-			for(int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) {
 				getPermutations(chars, length - 1);
-				
-				if(isOdd(length)) {
-					temp = chars[0]; 
-					chars[0] = chars[length-1]; 
-					chars[length-1] = temp;
+
+				if (isOdd(length)) {
+					swapFirstElementWithLast(chars, length);
 				} else {
-					temp = chars[i]; 
-					chars[i] = chars[length-1]; 
-					chars[length-1] = temp;
+					swapCurrentElementWithLastOne(chars, length, i);
 				}
 			}
 		}
+	}
+
+	private void swapCurrentElementWithLastOne(char[] chars, int length, int i) {
+		char temp = chars[i];
+		chars[i] = chars[length - 1];
+		chars[length - 1] = temp;
+	}
+
+	private void swapFirstElementWithLast(char[] chars, int length) {
+		char temp = chars[0];
+		chars[0] = chars[length - 1];
+		chars[length - 1] = temp;
 	}
 
 	private boolean isOdd(int length) {
